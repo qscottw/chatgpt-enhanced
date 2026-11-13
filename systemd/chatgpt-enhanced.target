@@ -1,0 +1,7 @@
+[Unit]
+Description=chatgpt-enhanced MCP, worker and OpenAI tunnel
+Wants=chatgpt-enhanced-worker.service chatgpt-enhanced-mcp.service chatgpt-enhanced-tunnel.service
+After=chatgpt-enhanced-worker.service chatgpt-enhanced-mcp.service chatgpt-enhanced-tunnel.service
+
+[Install]
+WantedBy=default.target

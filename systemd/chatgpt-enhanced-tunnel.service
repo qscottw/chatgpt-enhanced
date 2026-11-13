@@ -1,0 +1,17 @@
+[Unit]
+Description=chatgpt-enhanced OpenAI tunnel client
+After=network-online.target chatgpt-enhanced-mcp.service
+Wants=network-online.target chatgpt-enhanced-mcp.service
+PartOf=chatgpt-enhanced.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/chatgpt-enhanced
+ExecStart=%h/chatgpt-enhanced/.venv/bin/python -m runtime.tunnel
+Restart=on-failure
+RestartPreventExitStatus=78
+RestartSec=3
+TimeoutStopSec=15
+KillMode=control-group
+NoNewPrivileges=true
+UMask=0077

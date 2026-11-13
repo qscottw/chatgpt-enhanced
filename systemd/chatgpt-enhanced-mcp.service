@@ -1,0 +1,18 @@
+[Unit]
+Description=chatgpt-enhanced MCP API
+After=network.target chatgpt-enhanced-worker.service
+Wants=chatgpt-enhanced-worker.service
+
+PartOf=chatgpt-enhanced.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/chatgpt-enhanced
+ExecStart=%h/chatgpt-enhanced/.venv/bin/python %h/chatgpt-enhanced/server.py
+Restart=on-failure
+RestartPreventExitStatus=78
+RestartSec=2
+TimeoutStopSec=10
+KillMode=control-group
+NoNewPrivileges=true
+UMask=0077

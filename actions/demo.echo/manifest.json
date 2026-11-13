@@ -1,0 +1,20 @@
+{
+  "name": "demo.echo",
+  "description": "Echo structured input. This is a minimal hot-reload action used to verify the executor contract.",
+  "version": "1",
+  "runtime": "python",
+  "entrypoint": "run.py",
+  "tags": ["demo", "executor", "diagnostic"],
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "message": {"type": "string", "description": "Text to echo"},
+      "repeat": {"type": "integer", "description": "Repeat count"}
+    },
+    "required": ["message"],
+    "additionalProperties": false
+  },
+  "examples": [
+    {"message": "hello", "repeat": 2}
+  ]
+}

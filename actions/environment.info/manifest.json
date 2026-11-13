@@ -1,0 +1,16 @@
+{
+  "name": "environment.info",
+  "description": "Describe the current runtime root, state directory, task identity and Python environment.",
+  "version": "1",
+  "runtime": "python",
+  "entrypoint": "run.py",
+  "tags": [
+    "environment",
+    "diagnostic"
+  ],
+  "parameters": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

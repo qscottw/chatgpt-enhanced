@@ -1,0 +1,72 @@
+{
+  "name": "ssh.exec",
+  "description": "Execute a non-interactive command on a remote host over OpenSSH. Reuses multiplexed SSH connections by default and honors ~/.ssh/config aliases.",
+  "version": "2",
+  "runtime": "python",
+  "entrypoint": "run.py",
+  "tags": ["ssh", "remote", "command"],
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "host": {
+        "type": "string",
+        "minLength": 1,
+        "description": "SSH host or alias from ~/.ssh/config"
+      },
+      "command": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Command to execute on the remote host"
+      },
+      "user": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Optional SSH username override; normally omit when ~/.ssh/config defines it"
+      },
+      "port": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 65535,
+        "description": "Optional SSH port override; normally omit when ~/.ssh/config defines it"
+      },
+      "identity_file": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Optional local SSH private-key override; normally omit when ~/.ssh/config defines it"
+      },
+      "reuse_connection": {
+        "type": "boolean",
+        "default": true,
+        "description": "Reuse a multiplexed SSH master connection for subsequent calls"
+      },
+      "control_persist_seconds": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 604800,
+        "default": 43200,
+        "description": "How long an idle multiplexed master connection remains reusable"
+      },
+      "connect_timeout_seconds": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 300,
+        "default": 10,
+        "description": "Timeout only for establishing a new SSH connection; remote command execution itself has no timeout"
+      },
+      "strict_host_key_checking": {
+        "type": "string",
+        "enum": ["yes", "accept-new"],
+        "default": "accept-new",
+        "description": "OpenSSH host-key checking policy"
+      }
+    },
+    "required": ["host", "command"],
+    "additionalProperties": false
+  },
+  "examples": [
+    {
+      "host": "company-cloud",
+      "command": "uname -a"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[Unit]
+Description=chatgpt-enhanced durable task worker
+After=network.target
+
+PartOf=chatgpt-enhanced.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/chatgpt-enhanced
+ExecStart=%h/chatgpt-enhanced/.venv/bin/python -m runtime.worker
+Restart=on-failure
+RestartPreventExitStatus=78
+RestartSec=2
+TimeoutStopSec=15
+KillMode=control-group
+NoNewPrivileges=true
+UMask=0077

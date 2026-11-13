@@ -1,0 +1,26 @@
+# Local runtime config and credentials
+.env
+*.env
+!.env.example
+**/.ssh/
+*.pem
+*.key
+id_ed25519*
+id_rsa*
+
+# Environment, caches and runtime output
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.state/
+*.sqlite*
+*.log
+
+# Local-only utilities and distributed executables
+bin/
+clipboard-qq-mail/
+.DS_Store
